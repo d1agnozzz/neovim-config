@@ -5,4 +5,5 @@
 * Install nerd-tree plugin, git-plugin, autocompletion plugin, snippet plugin,
 * Setup spellcheck
 * Configure formatter with formatter.nvim (address mason readme-page, there is something about null-ls)
-* Install and configure telescpope-undo, trouble.nvim, 
+* Install and configure telescpope-undo, trouble.nvim, spectre, flit, whichkey, illuminate, todo-comments
+* Move all plugin-related keymappings to plugin specs: keys = {}
