@@ -19,6 +19,10 @@ local colorchemes = {
 local function colorschemes_change_priority(lazy_specs)
     for i, v in ipairs(lazy_specs) do
        v.priority = 1000 
+        -- if not string.find(v[1], Current_colorscheme) then
+        --     v.lazy = true
+        -- end
+
     end
 end
 

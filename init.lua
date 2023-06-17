@@ -1,3 +1,5 @@
+Current_colorscheme = 'kanagawa'
+
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 
 if not vim.loop.fs_stat(lazypath) then
@@ -18,4 +20,4 @@ require('lazy').setup('plugins')
 require('keymap')
 require('set')
 
-vim.cmd.colorscheme('kanagawa')
+vim.cmd.colorscheme(Current_colorscheme)
