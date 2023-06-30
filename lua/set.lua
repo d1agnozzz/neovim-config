@@ -24,6 +24,15 @@ vim.opt.signcolumn = 'auto'
 
 vim.opt.updatetime = 100
 
-vim.opt.colorcolumn = '80'
+vim.opt.colorcolumn = '80,100'
 
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
+vim.opt.spell = true
+vim.opt.spelllang = 'en,ru'
+-- vim.cmd("highlight SpellBad cterm=undercurl gui=underline guisp=green")
+vim.cmd('augroup SpellBadHighlight')
+vim.cmd('autocmd!')
+vim.cmd('autocmd ColorScheme * highlight SpellBad cterm=undercurl gui=undercurl guisp=green')
+vim.cmd('augroup END')
