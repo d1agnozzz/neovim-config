@@ -88,6 +88,11 @@ return {
         config = function()
             local telescope = require('telescope')
             telescope.setup({
+                pickers = {
+                    colorscheme = {
+                        enable_preview = true,
+                    },
+                },
                 extensions = {
                     undo = {
                         side_by_side = true,

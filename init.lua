@@ -19,5 +19,5 @@ vim.g.mapleader = ' '
 require('lazy').setup('plugins')
 require('keymap')
 require('set')
-
+vim.g.sonokai_enable_italic = 1
 vim.cmd.colorscheme(Current_colorscheme)
