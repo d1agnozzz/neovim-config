@@ -1,1 +1,1 @@
-vim.keymap.set('n', '<leader>fmt', ':Format<cr>')
+vim.keymap.set('n', '<C-f>', ':Format<cr>')
