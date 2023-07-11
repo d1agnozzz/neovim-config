@@ -23,7 +23,7 @@ vim.keymap.set('v', '<', '<gv')
 
 -- Write changes, close buffer and open second last opened buffer
 -- vim.keymap.set('n', '<leader>wq', ':w<bar>bd<bar>b#<bar>b#<cr>')
-vim.keymap.set('n', '<c-d>', function()
+vim.keymap.set('n', '<leader>d', function()
   -- Check if the current buffer is the last one
   if #vim.fn.getbufinfo({buflisted = true}) == 1 then
     -- Open nvim-tree
