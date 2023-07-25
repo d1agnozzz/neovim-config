@@ -1,0 +1,6 @@
+vim.keymap.set('n', '<leader>B', function() require('dap').toggle_breakpoint() end, {desc = 'Toggle breakpoint'})
+vim.keymap.set({ 'n', 'v' }, '<leader>ds', function()
+    local widgets = require('dap.ui.widgets')
+    local sidebar = widgets.sidebar(widgets.scopes)
+    sidebar.open()
+end, {desc = 'Open dap sidebar'})

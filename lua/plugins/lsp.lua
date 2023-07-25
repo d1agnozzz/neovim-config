@@ -20,7 +20,11 @@ return {
             { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
             { 'ms-jpq/coq.thirdparty', branch = '3p' },
             { 'folke/neodev.nvim', opts = {} },
-            { 'simrat39/rust-tools.nvim', dependencies = 'nvim-lua/plenary.nvim', ft = 'rust' },
+            {
+                'simrat39/rust-tools.nvim',
+                dependencies = 'nvim-lua/plenary.nvim',
+                ft = 'rust',
+            },
             { 'mfussenegger/nvim-dap' },
         },
 
@@ -54,14 +58,12 @@ return {
                 vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'LSP Hover' })
             end
 
-            require('neodev').setup({
-
-            })
+            require('neodev').setup({})
 
             local lspconfig = require('lspconfig')
             local util = require('lspconfig.util')
 
-            local servers = {'pyright', 'lua_ls' }
+            local servers = { 'pyright', 'lua_ls' }
 
             for _, lsp in ipairs(servers) do
                 lspconfig[lsp].setup(require('coq').lsp_ensure_capabilities({
@@ -73,14 +75,32 @@ return {
             rt.setup({
                 server = {
                     on_attach = on_attach,
+                    settings = {
+                        ['rust-analyzer'] = {
+                            cargo = {
+                                allFeatures = true,
+                            },
+                            checkOnSave = {
+                                allFeatures = true,
+                                overrideCommand = {
+                                    'cargo',
+                                    'clippy',
+                                    '--workspace',
+                                    '--message-format=json',
+                                    '--all-targets',
+                                    '--all-features',
+                                },
+                            },
+                        },
+                    },
                 },
-                settings = {
-                    ['rust-analyzer'] = {
-                        cargo = {
-                            allFeatures = true,
-                        }
-                    }
-                }
+
+                tools = {
+                    inlay_hints = {
+                        parameter_hints_prefix = ':',
+                        other_hints_prefix = ':',
+                    },
+                },
             })
             --
             -- lspconfig.rust_analyzer.setup({
@@ -118,5 +138,3 @@ return {
         end,
     },
 }
-
-

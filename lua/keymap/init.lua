@@ -8,6 +8,7 @@ require('keymap.plugins.coq')
 require('keymap.plugins.autopairs')
 require('keymap.plugins.trouble')
 require('keymap.plugins.formatter')
+require('keymap.plugins.dap')
 
 -- Yank to system clipboard
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
