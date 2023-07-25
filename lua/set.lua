@@ -29,9 +29,12 @@ vim.opt.colorcolumn = '80,100'
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+vim.opt.hidden = true
+
+vim.opt.listchars = "trail:·,nbsp:·,extends:>,precedes:<,eol:↲"
+
 vim.opt.spell = true
 vim.opt.spelllang = 'en,ru'
--- vim.cmd("highlight SpellBad cterm=undercurl gui=underline guisp=green")
 vim.cmd('augroup SpellBadHighlight')
 vim.cmd('autocmd!')
 vim.cmd('autocmd ColorScheme * highlight SpellBad cterm=undercurl gui=undercurl guisp=green')
