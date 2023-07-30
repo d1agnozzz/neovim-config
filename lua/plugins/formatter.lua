@@ -38,30 +38,30 @@ return {
                                 exe = 'rustfmt',
                                 stdin = true,
                             }
-                        end
+                        end,
                     },
                     py = {
-                        function ()
+                        function()
                             return {
                                 exe = 'black',
-                                args = {'-q', '-'},
+                                args = { '-q', '-' },
                                 stdin = true,
                             }
                         end,
-                        function ()
+                        function()
                             return {
                                 exe = 'autopep8',
-                                args = {'-'},
+                                args = { '-' },
                                 stdin = 1,
                             }
                         end,
-                        function ()
+                        function()
                             return {
                                 exe = 'isort',
-                                args = {'-q', '-'},
+                                args = { '-q', '-' },
                                 stdin = true,
                             }
-                        end
+                        end,
                     },
 
                     -- Use the special "*" filetype for defining formatter configurations on
@@ -72,6 +72,14 @@ return {
                         require('formatter.filetypes.any').remove_trailing_whitespace,
                     },
                 },
+            })
+
+            vim.api.nvim_create_augroup('FormatOnSave', {
+                clear = true
+            })
+            vim.api.nvim_create_autocmd('BufWritePost', {
+                group = 'FormatOnSave',
+                command = 'FormatWrite'
             })
         end,
     },
