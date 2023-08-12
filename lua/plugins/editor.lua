@@ -3,7 +3,22 @@ local WIDTH_RATIO = 0.5 -- You can change this too
 
 return {
     { 'RRethy/vim-illuminate' },
-    { 'lukas-reineke/indent-blankline.nvim', opts = {} },
+    {
+        'lukas-reineke/indent-blankline.nvim',
+        config = function()
+            require('indent_blankline').setup({})
+            vim.g.indent_blankline_filetype_exclude = {
+                'lspinfo',
+                'packer',
+                'checkhealth',
+                'help',
+                'man',
+                '',
+                'dashboard',
+            }
+            -- table.insert(vim.g.indent_blankline_filetype_exclude, 'dashboard')
+        end,
+    },
     {
         'iamcco/markdown-preview.nvim',
         cmd = { 'MarkdownPreviewToggle' },
@@ -199,16 +214,28 @@ return {
         end,
     },
     {
-        'akinsho/toggleterm.nvim', version = "*", opts = {
+        'akinsho/toggleterm.nvim',
+        version = '*',
+        opts = {
             size = function(term)
-                if term.direction == "horizontal" then
+                if term.direction == 'horizontal' then
                     return 15
-                elseif term.direction == "vertical" then
+                elseif term.direction == 'vertical' then
                     return vim.o.columns * 0.4
                 end
             end,
             open_mapping = [[<c-\>]],
             hide_numbers = true, -- hide the number column in toggleterm buffers
-        }
-    }
+        },
+    },
+    {
+        'glepnir/dashboard-nvim',
+        event = 'VimEnter',
+        config = function()
+            require('dashboard').setup({
+                -- config
+            })
+        end,
+        dependencies = { { 'nvim-tree/nvim-web-devicons' } },
+    },
 }
