@@ -1,6 +1,14 @@
 local colorchemes = {
-    { 'sainnhe/gruvbox-material' },
-    { 'morhetz/gruvbox' },
+    {
+        'sainnhe/gruvbox-material',
+        config = function()
+            vim.g.gruvbox_material_background = 'hard'
+            vim.g.gruvbox_material_foreground = 'material'
+            vim.g.gruvbox_material_enable_bold = '1'
+            vim.g.gruvbox_material_enable_italic = '1'
+        end,
+    },
+    -- { 'morhetz/gruvbox' },
     {
         'rebelot/kanagawa.nvim',
         opts = {
@@ -25,9 +33,10 @@ local colorchemes = {
             end,
         },
     },
-    {'Shatur/neovim-ayu'},
+    { 'Shatur/neovim-ayu' },
     { 'folke/tokyonight.nvim' },
     { 'EdenEast/nightfox.nvim' },
+    { 'talha-akram/noctis.nvim' },
     { 'sainnhe/sonokai' },
     { 'dracula/vim' },
     { 'loctvl842/monokai-pro.nvim', opts = {} },
