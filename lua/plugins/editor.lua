@@ -4,6 +4,20 @@ local WIDTH_RATIO = 0.5 -- You can change this too
 return {
     { 'RRethy/vim-illuminate' },
     {
+        'kevinhwang91/nvim-ufo',
+        dependencies = 'kevinhwang91/promise-async',
+        config = function()
+            vim.opt.foldcolumn = '0'
+            vim.opt.foldlevel = 999
+            vim.opt.foldlevelstart = 999
+            vim.opt.foldenable = true
+
+            require('ufo').setup({
+                provider_selector = function(bufnr, filetype, buftype) return { 'treesitter', 'indent' } end,
+            })
+        end,
+    },
+    {
         'lukas-reineke/indent-blankline.nvim',
         config = function()
             require('indent_blankline').setup({})
@@ -133,48 +147,53 @@ return {
             telescope.load_extension('undo')
         end,
     },
+    { 'nvim-lua/lsp-status.nvim' },
     {
         'nvim-lualine/lualine.nvim',
-        opts = {
-            options = {
-                icons_enabled = true,
-                theme = 'auto',
-                component_separators = { left = '|', right = '|' },
-                section_separators = { left = '', right = '' },
-                disabled_filetypes = {
-                    statusline = {},
-                    winbar = {},
+        config = function()
+            local lsp_status = require('lsp-status')
+            lsp_status.register_progress()
+            require('lualine').setup({
+                options = {
+                    icons_enabled = true,
+                    theme = 'auto',
+                    component_separators = { left = '|', right = '|' },
+                    section_separators = { left = '', right = '' },
+                    disabled_filetypes = {
+                        statusline = {},
+                        winbar = {},
+                    },
+                    ignore_focus = { 'NvimTree' },
+                    always_divide_middle = true,
+                    globalstatus = true,
+                    refresh = {
+                        statusline = 1000,
+                        tabline = 1000,
+                        winbar = 1000,
+                    },
                 },
-                ignore_focus = { 'NvimTree' },
-                always_divide_middle = true,
-                globalstatus = true,
-                refresh = {
-                    statusline = 1000,
-                    tabline = 1000,
-                    winbar = 1000,
+                sections = {
+                    lualine_a = { 'mode', 'buffers' },
+                    lualine_b = { 'branch', 'diff', 'diagnostics' },
+                    lualine_c = {},
+                    lualine_x = { lsp_status.status(), 'encoding', 'fileformat', 'filetype' },
+                    lualine_y = { 'progress' },
+                    lualine_z = { 'location' },
                 },
-            },
-            sections = {
-                lualine_a = { 'mode', 'buffers' },
-                lualine_b = { 'branch', 'diff', 'diagnostics' },
-                lualine_c = {},
-                lualine_x = { 'encoding', 'fileformat', 'filetype' },
-                lualine_y = { 'progress' },
-                lualine_z = { 'location' },
-            },
-            inactive_sections = {
-                lualine_a = {},
-                lualine_b = {},
-                lualine_c = {},
-                lualine_x = { 'location' },
-                lualine_y = {},
-                lualine_z = {},
-            },
-            tabline = {},
-            winbar = {},
-            inactive_winbar = {},
-            extensions = { 'lazy', 'nvim-tree' },
-        },
+                inactive_sections = {
+                    lualine_a = {},
+                    lualine_b = {},
+                    lualine_c = {},
+                    lualine_x = { 'location' },
+                    lualine_y = {},
+                    lualine_z = {},
+                },
+                tabline = {},
+                winbar = {},
+                inactive_winbar = {},
+                extensions = { 'lazy', 'nvim-tree' },
+            })
+        end,
     },
     {
         'nvim-tree/nvim-tree.lua',
@@ -229,13 +248,28 @@ return {
         },
     },
     {
-        'glepnir/dashboard-nvim',
-        event = 'VimEnter',
+        'goolord/alpha-nvim',
         config = function()
-            require('dashboard').setup({
-                -- config
-            })
+            local alpha = require('alpha')
+            local dashboard = require('alpha.themes.dashboard')
+
+            dashboard.section.header.val = {
+                [[                               __                ]],
+                [[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
+                [[ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
+                [[/\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
+                [[\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
+                [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+            }
+            dashboard.section.buttons.val = {
+                dashboard.button('e', '  New file', '<cmd>ene <CR>'),
+                dashboard.button('C-p', '󰈞  Find file', '<cmd>Telescope fd<CR>'),
+                dashboard.button('SPC f r', '󰊄  Recently opened files', '<cmd>Telescope oldfiles <CR>'),
+                dashboard.button('SPC f g', '󰈬  Find word'),
+                dashboard.button('SPC s l', '  Open last session'),
+            }
+
+            require('alpha').setup(require('alpha.themes.dashboard').config)
         end,
-        dependencies = { { 'nvim-tree/nvim-web-devicons' } },
     },
 }
