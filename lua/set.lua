@@ -40,10 +40,12 @@ vim.cmd('autocmd!')
 vim.cmd('autocmd ColorScheme * highlight SpellBad cterm=undercurl gui=undercurl guisp=green')
 vim.cmd('augroup END')
 
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.api.nvim_create_augroup('OpenAllFolds', {})
-vim.api.nvim_create_autocmd({ 'BufReadPost', 'FileReadPost' }, {
-    group = 'OpenAllFolds',
-    command = 'normal zR',
-})
+vim.opt.fileencodings:append({ 'cp1251' })
+
+-- vim.opt.foldmethod = 'expr'
+-- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+-- vim.api.nvim_create_augroup('OpenAllFolds', {})
+-- vim.api.nvim_create_autocmd({ 'BufReadPost', 'FileReadPost' }, {
+--     group = 'OpenAllFolds',
+--     command = 'normal zR',
+-- })
