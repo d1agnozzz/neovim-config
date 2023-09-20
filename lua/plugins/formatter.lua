@@ -4,6 +4,8 @@ return {
         config = function()
             -- Utilities for creating configurations
             local util = require('formatter.util')
+            local defaults = require('formatter.defaults')
+            local filetypes = require('formatter.filetypes')
 
             -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
             require('formatter').setup({
@@ -15,23 +17,7 @@ return {
                 filetype = {
                     -- Formatter configurations for filetype "lua" go here
                     -- and will be executed in order
-                    lua = {
-                        function()
-                            -- Full specification of configurations is down below and in Vim help
-                            -- files
-                            return {
-                                exe = 'stylua',
-                                args = {
-                                    '--search-parent-directories',
-                                    '--stdin-filepath',
-                                    util.escape_path(util.get_current_buffer_file_path()),
-                                    '--',
-                                    '-',
-                                },
-                                stdin = true,
-                            }
-                        end,
-                    },
+                    lua = filetypes.lua.stylua,
                     rust = {
                         function()
                             return {
@@ -40,28 +26,16 @@ return {
                             }
                         end,
                     },
-                    py = {
-                        function()
-                            return {
-                                exe = 'black',
-                                args = { '-q', '-' },
-                                stdin = true,
-                            }
-                        end,
-                        function()
-                            return {
-                                exe = 'autopep8',
-                                args = { '-' },
-                                stdin = 1,
-                            }
-                        end,
-                        function()
-                            return {
-                                exe = 'isort',
-                                args = { '-q', '-' },
-                                stdin = true,
-                            }
-                        end,
+                    python = {
+                        filetypes.python.black,
+                        filetypes.python.autopep8,
+                        filetypes.python.isort,
+                    },
+                    typescript = {
+                        util.withl(defaults.prettier, 'typescript'),
+                    },
+                    typescriptreact = {
+                        util.withl(defaults.prettier, 'typescript'),
                     },
 
                     -- Use the special "*" filetype for defining formatter configurations on
@@ -75,11 +49,11 @@ return {
             })
 
             vim.api.nvim_create_augroup('FormatOnSave', {
-                clear = true
+                clear = true,
             })
             vim.api.nvim_create_autocmd('BufWritePost', {
                 group = 'FormatOnSave',
-                command = 'FormatWrite'
+                command = 'FormatWrite',
             })
         end,
     },
