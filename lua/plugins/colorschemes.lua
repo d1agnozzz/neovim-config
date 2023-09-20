@@ -16,7 +16,7 @@ local colorchemes = {
                 theme = {
                     all = {
                         ui = {
-                            bg_gutter = 'none',
+                            bg_gutter = 'none', -- Remove the background of LineNr, {Sign,Fold}Column and friends
                         },
                     },
                 },
@@ -29,10 +29,11 @@ local colorchemes = {
                     PmenuSel = { fg = 'NONE', bg = theme.ui.bg_p2 },
                     PmenuSbar = { bg = theme.ui.bg_m1 },
                     PmenuThumb = { bg = theme.ui.bg_p2 },
+                    MatchParen = { bg = '#54546D'}, -- gray background for matching parentheses
                 }
             end,
         },
-    },
+    }, -- eilfji ( w,eflihf ) 
     { 'Shatur/neovim-ayu' },
     { 'folke/tokyonight.nvim' },
     { 'EdenEast/nightfox.nvim' },
