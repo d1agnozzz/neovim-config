@@ -115,7 +115,31 @@ return {
     {
         'lukas-reineke/indent-blankline.nvim',
         config = function()
-            require('indent_blankline').setup({})
+            -- vim.cmd([[highlight IndentBlanklineIndent1 guibg=#2A2A37 gui=nocombine]])
+            vim.cmd([[highlight IndentBlanklineIndent2 guibg=#1b1b23 gui=nocombine]])
+            local highlight = {
+                'IndentBlanklineIndent2',
+                'Whitespace',
+            }
+            require('ibl').setup({
+                indent = { highlight = highlight, char = '' },
+                whitespace = {
+                    highlight = highlight,
+                    remove_blankline_trail = false,
+                },
+                scope = { enabled = false },
+
+                -- char = '',
+                -- char_highlight_list = {
+                --     'IndentBlanklineIndent1',
+                --     'IndentBlanklineIndent2',
+                -- },
+                -- space_char_highlight_list = {
+                --     'IndentBlanklineIndent1',
+                --     'IndentBlanklineIndent2',
+                -- },
+                -- show_trailing_blankline_indent = false,
+            })
             vim.g.indent_blankline_filetype_exclude = {
                 'lspinfo',
                 'packer',
@@ -125,7 +149,6 @@ return {
                 '',
                 'dashboard',
             }
-            -- table.insert(vim.g.indent_blankline_filetype_exclude, 'dashboard')
         end,
     },
     {
