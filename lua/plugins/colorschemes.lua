@@ -1,4 +1,5 @@
 local colorchemes = {
+    { 'effkay/argonaut.vim' },
     {
         'sainnhe/gruvbox-material',
         config = function()
@@ -29,11 +30,11 @@ local colorchemes = {
                     PmenuSel = { fg = 'NONE', bg = theme.ui.bg_p2 },
                     PmenuSbar = { bg = theme.ui.bg_m1 },
                     PmenuThumb = { bg = theme.ui.bg_p2 },
-                    MatchParen = { bg = '#54546D'}, -- gray background for matching parentheses
+                    MatchParen = { bg = '#54546D' }, -- gray background for matching parentheses
                 }
             end,
         },
-    }, -- eilfji ( w,eflihf ) 
+    }, -- eilfji ( w,eflihf )
     { 'Shatur/neovim-ayu' },
     { 'folke/tokyonight.nvim' },
     { 'EdenEast/nightfox.nvim' },
