@@ -90,8 +90,8 @@ return {
                     -- { name = 'ultisnips' }, -- For ultisnips users.
                     -- { name = 'snippy' }, -- For snippy users.
                 }, {
-                    { name = 'buffer' },
                     { name = 'path' },
+                    { name = 'buffer' },
                     {
                         name = 'spell',
                         option = {
@@ -102,6 +102,9 @@ return {
                         },
                     },
                 }),
+                experimental = {
+                    ghost_text = true,
+                },
             })
 
             -- Set configuration for specific filetype.
