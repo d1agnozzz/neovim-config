@@ -11,19 +11,27 @@ return {
                 'williamboman/mason-lspconfig.nvim',
                 opts = { ensure_installed = { 'lua_ls' } },
             },
-            -- {
-            --     'ms-jpq/coq_nvim',
-            --     branch = 'coq',
-            --     config = function() vim.cmd(':COQnow --shut-up') end,
-            --     build = ':COQdeps',
-            -- },
-            -- { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
-            -- { 'ms-jpq/coq.thirdparty', branch = '3p' },
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'folke/neodev.nvim', opts = {} },
             {
                 'simrat39/rust-tools.nvim',
-                dependencies = 'nvim-lua/plenary.nvim',
+                dependencies = {
+                    { 'nvim-lua/plenary.nvim' },
+                    {
+                        'saecki/crates.nvim',
+                        dependencies = { 'nvim-lua/plenary.nvim' },
+                        event = { 'BufRead Cargo.toml' },
+                        config = function()
+                            require('crates').setup({
+                                src = {
+                                    cmp = {
+                                        enabled = true,
+                                    },
+                                },
+                            })
+                        end,
+                    },
+                },
                 ft = 'rust',
             },
             { 'mfussenegger/nvim-dap' },
@@ -63,7 +71,6 @@ return {
             end
 
             require('neodev').setup({})
-
 
             -- Set up lspconfig.
             local capabilities = require('cmp_nvim_lsp').default_capabilities()

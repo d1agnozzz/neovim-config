@@ -92,6 +92,7 @@ return {
                 }, {
                     { name = 'path' },
                     { name = 'buffer' },
+                    { name = 'crates' },
                     {
                         name = 'spell',
                         option = {
