@@ -128,7 +128,7 @@ return {
                 },
             })
 
-            local servers = { 'pyright', 'lua_ls', 'tsserver' }
+            local servers = { 'pyright', 'lua_ls', 'tsserver', 'texlab' }
 
             for _, lsp in ipairs(servers) do
                 lspconfig[lsp].setup({

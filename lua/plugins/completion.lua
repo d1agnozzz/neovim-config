@@ -24,8 +24,35 @@ return {
                 version = '2.*', -- Replace <CurrentMajor> by the latest released major (first number of latest release)
                 dependencies = {
                     'rafamadriz/friendly-snippets',
-                    config = function() require('luasnip.loaders.from_vscode').lazy_load() end,
+                    config = function()
+                        require('luasnip.loaders.from_vscode').lazy_load()
+
+                        local ls = require('luasnip')
+                        local fmt = require('luasnip.extras.fmt').fmt
+                        local s = ls.snippet
+                        local i = ls.insert_node
+                        local rep = require('luasnip.extras').rep
+
+                        ls.add_snippets('tex', {
+                            s(
+                                'img',
+                                fmt(
+                                    [[
+                                \begin{figure}
+                                    \centering
+                                    \includegraphics[width=\linewidth]{<path>}
+                                    \caption{<caption>}
+                                    \label{<label>}
+                                \end{figure}
+                                ]],
+                                    { path = i(1, 'path_to_img'), caption = i(2, 'caption'), label = i(3, 'label') },
+                                    { delimiters = '<>' }
+                                )
+                            ),
+                        })
+                    end,
                 },
+                -- config = function() end,
             },
         },
         config = function()

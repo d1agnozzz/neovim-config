@@ -1,0 +1,20 @@
+INFO:  latexindent version 3.20.1, 2023-01-07, a script to indent .tex files
+       latexindent lives here: /home/alex-mit-bvt2002/.local/share/nvim/mason/packages/latexindent/
+       Mon Nov  6 20:20:11 2023
+       Filename: report.tex
+INFO:  Processing switches:
+INFO:  Directory for backup files and indent.log:
+       .
+INFO:  YAML settings read: defaultSettings.yaml
+       Reading defaultSettings.yaml from /home/alex-mit-bvt2002/.local/share/nvim/mason/packages/latexindent/defaultSettings.yaml
+       Reading defaultSettings.yaml (2nd attempt) from /home/alex-mit-bvt2002/.local/share/nvim/mason/packages/latexindent/../../texmf-dist/scripts/latexindent/defaultSettings.yaml
+       and then, if necessary, /home/alex-mit-bvt2002/.local/share/nvim/mason/packages/latexindent/LatexIndent/defaultSettings.yaml
+INFO:  YAML reading settings
+       Home directory is /home/alex-mit-bvt2002
+       latexindent.pl didn't find indentconfig.yaml or .indentconfig.yaml
+       see all possible locations: https://latexindentpl.readthedocs.io/en/latest/sec-appendices.html#indentconfig-options)
+FATAL I couldn't find report.tex, are you sure it exists?
+      Exiting, no indentation done.
+       --------------
+INFO:  Please direct all communication/issues to:
+        https://github.com/cmhughes/latexindent.pl

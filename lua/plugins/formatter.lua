@@ -37,6 +37,14 @@ return {
                     typescriptreact = {
                         util.withl(defaults.prettier, 'typescript'),
                     },
+                    tex = {
+                        function()
+                            return {
+                                exe = 'latexindent',
+                                stdin = true,
+                            }
+                        end,
+                    },
 
                     -- Use the special "*" filetype for defining formatter configurations on
                     -- any filetype
