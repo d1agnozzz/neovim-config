@@ -317,6 +317,8 @@ return {
         'nvim-tree/nvim-tree.lua',
         opts = {
             hijack_cursor = true,
+            disable_netrw = false,
+            hijack_netrw = true,
             view = {
                 float = {
                     enable = true,
@@ -346,8 +348,8 @@ return {
             -- on_attach = require('keymap.plugins.nvim-tree')
         },
         init = function()
-            vim.g.loaded_netrw = 1
-            vim.g.loaded_netrwPlugin = 1
+            -- vim.g.loaded_netrw = 1
+            -- vim.g.loaded_netrwPlugin = 1
         end,
     },
     {
