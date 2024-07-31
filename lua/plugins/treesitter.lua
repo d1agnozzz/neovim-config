@@ -42,28 +42,23 @@ return {
             endwise = {
                 enable = true,
             },
-            rainbow = {
-                enable = true,
-                -- disable = { 'jsx', 'cpp', 'tsx', 'ts' }, -- list of languages you want to disable the plugin for
-                query = {
-                    'rainbow-parens',
-                    html = 'rainbow-tags',
-                    tsx = 'rainbow-parens-react',
-                },
-                strategy = require('ts-rainbow').strategy['global'],
-            },
+            -- rainbow = {
+            --     enable = true,
+            --     -- disable = { 'jsx', 'cpp', 'tsx', 'ts' }, -- list of languages you want to disable the plugin for
+            --     query = {
+            --         'rainbow-parens',
+            --         html = 'rainbow-tags',
+            --         tsx = 'rainbow-parens-react',
+            --     },
+            --     strategy = require('ts-rainbow').strategy['global'],
+            -- },
         })
         --         require('tree-sitter-typescript').typescript; -- TypeScript grammar
         -- require('tree-sitter-typescript'); -- TSX grammar
     end,
     dependencies = {
         {
-            'HiPhish/nvim-ts-rainbow2',
-            -- config = function()
-            --     require('nvim-treesitter.configs').setup({
-            --
-            --     })
-            -- end,
+            'HiPhish/rainbow-delimiters.nvim',
         },
         'nvim-treesitter/nvim-treesitter-context',
         'JoosepAlviste/nvim-ts-context-commentstring',

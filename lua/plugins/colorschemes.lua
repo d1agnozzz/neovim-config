@@ -54,6 +54,7 @@ local colorchemes = {
             })
         end,
     },
+    { "diegoulloao/neofusion.nvim", priority = 1000 , config = true, opts = ... },
 }
 
 local function colorschemes_change_priority(lazy_specs)
