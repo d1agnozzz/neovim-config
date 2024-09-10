@@ -36,6 +36,11 @@ local colorchemes = {
         },
     }, -- eilfji ( w,eflihf )
     { 'Shatur/neovim-ayu' },
+    -- { 'ayu-theme/ayu-vim',
+    --     config = function()
+    --         ayucolor = 'light'
+    --     end
+    -- },
     { 'folke/tokyonight.nvim' },
     { 'EdenEast/nightfox.nvim' },
     { 'talha-akram/noctis.nvim' },
