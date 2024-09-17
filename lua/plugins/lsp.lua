@@ -23,7 +23,7 @@ return {
                         event = { 'BufRead Cargo.toml' },
                         config = function()
                             require('crates').setup({
-                                src = {
+                                completion = {
                                     cmp = {
                                         enabled = true,
                                     },
@@ -128,7 +128,7 @@ return {
                 },
             })
 
-            local servers = { 'pyright', 'lua_ls', 'tsserver', 'texlab' }
+            local servers = { 'pyright', 'lua_ls', 'ts_ls', 'texlab' }
 
             for _, lsp in ipairs(servers) do
                 lspconfig[lsp].setup({
