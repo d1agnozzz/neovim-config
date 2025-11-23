@@ -43,6 +43,18 @@ vim.cmd('augroup END')
 
 vim.opt.fileencodings:append({ 'cp1251' })
 
+vim.o.foldenable = true
+vim.o.foldlevel = 99
+vim.o.foldmethod = 'expr'
+
+-- vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldexpr = vim.lsp.foldexpr and 'v:lua.vim.lsp.foldexpr()' or 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldtext = ''
+vim.opt.foldcolumn = '0'
+vim.opt.fillchars:append({ fold = ' ' })
+
+-- vim.opt.autochdir = true
+
 -- vim.opt.foldmethod = 'expr'
 -- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 -- vim.api.nvim_create_augroup('OpenAllFolds', {})

@@ -59,7 +59,8 @@ local colorchemes = {
             })
         end,
     },
-    { "diegoulloao/neofusion.nvim", priority = 1000 , config = true, opts = ... },
+    { 'diegoulloao/neofusion.nvim', priority = 1000, config = true, opts = ... },
+    { 'yorumicolors/yorumi.nvim' },
 }
 
 local function colorschemes_change_priority(lazy_specs)

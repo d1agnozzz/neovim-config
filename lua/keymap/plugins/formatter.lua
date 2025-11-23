@@ -1,1 +1,1 @@
-vim.keymap.set('n', '<C-f>', ':Format<cr>')
+vim.keymap.set('n', '<C-f>', ':Format<cr>', { desc = 'Perform formatting' })

@@ -1,4 +1,4 @@
-Current_colorscheme = 'kanagawa'
+Current_colorscheme = 'tokyonight-night'
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 
@@ -16,7 +16,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = ' '
-require('lazy').setup('plugins')
+
+local plugins = {
+    { import = 'plugins' },
+    { import = 'plugins.treesitter' },
+    { import = 'plugins.appearance' },
+    { import = 'plugins.filesystem' },
+    { import = 'plugins.text-editing' },
+    { import = 'plugins.workflow' },
+}
+
+local keymap = {
+    { import = 'keymap' },
+}
+
+require('lazy').setup(plugins)
 require('keymap')
 require('set')
 vim.g.sonokai_enable_italic = 1

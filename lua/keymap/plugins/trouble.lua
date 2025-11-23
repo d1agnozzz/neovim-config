@@ -1,9 +1,20 @@
-vim.keymap.set('n', '<leader>tt', '<cmd>TroubleToggle<cr>', {desc = 'Trouble'})
-vim.keymap.set('n', '<leader>tw', '<cmd>TroubleToggle workspace_diagnostics<cr>', {desc = 'Trouble (workspace mode)'})
-vim.keymap.set('n', '<leader>td', '<cmd>TroubleToggle document_diagnostics<cr>', {desc = 'Trouble (document mode)'})
-vim.keymap.set('n', '<leader>tq', '<cmd>TroubleToggle quickfix<cr>', {desc = 'Trouble (quickfix)'})
-vim.keymap.set('n', '<leader>tl', '<cmd>TroubleToggle loclist<cr>', {desc = 'Trouble (loclist)'})
+vim.keymap.set('n', '<leader>tt', '<cmd>Trouble diagnostics toggle focus=false filter.buf=0<cr>', { desc = 'Trouble' })
+vim.keymap.set(
+    'n',
+    '<leader>tw',
+    '<cmd>TroubleToggle diagnostics toggle focus=false<cr>',
+    { desc = 'Trouble (workspace mode)' }
+)
+vim.keymap.set('n', '<leader>tq', '<cmd>Trouble quickfix toggle <cr>', { desc = 'Trouble (quickfix)' })
+vim.keymap.set('n', '<leader>tl', '<cmd>Trouble loclist toggle<cr>', { desc = 'Trouble (loclist)' })
 
-vim.keymap.set('n', 'gR', '<cmd>TroubleToggle lsp_references<cr>', {desc = 'Trouble (LSP references)'})
-vim.keymap.set('n', 'gD', '<cmd>TroubleToggle lsp_definitions<cr>', {desc = 'Trouble (LSP definitions)'})
-vim.keymap.set('n', 'gI', '<cmd>TroubleToggle lsp_implementations<cr>', {desc = 'Trouble (LSP implementations)'})
+vim.keymap.set('n', 'gR', '<cmd>Trouble lsp_references toggle<cr>', { desc = 'Trouble (LSP references)' })
+vim.keymap.set('n', 'gD', '<cmd>Trouble lsp_definitions toggle<cr>', { desc = 'Trouble (LSP definitions)' })
+vim.keymap.set('n', 'gI', '<cmd>Trouble lsp_implementations toggle<cr>', { desc = 'Trouble (LSP implementations)' })
+
+vim.keymap.set(
+    'n',
+    '<leader>cs',
+    '<cmd>Trouble lsp_document_symbols toggle focus=true win = { type = split, position = right}<cr>'
+)
+vim.keymap.set('n', '<leader>cS', '<cmd>Trouble symbols toggle focus=false win = {type = split, position = right}<cr>')

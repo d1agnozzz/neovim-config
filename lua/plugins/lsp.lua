@@ -13,37 +13,27 @@ return {
             },
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'folke/neodev.nvim', opts = {} },
-            {
-                'simrat39/rust-tools.nvim',
-                dependencies = {
-                    { 'nvim-lua/plenary.nvim' },
-                    {
-                        'saecki/crates.nvim',
-                        dependencies = { 'nvim-lua/plenary.nvim' },
-                        event = { 'BufRead Cargo.toml' },
-                        config = function()
-                            require('crates').setup({
-                                completion = {
-                                    cmp = {
-                                        enabled = true,
-                                    },
-                                },
-                            })
-                        end,
-                    },
-                },
-                ft = 'rust',
-            },
             { 'mfussenegger/nvim-dap' },
         },
 
         config = function()
             -- replace E, W, H letters in signcolumn with NerdFont icons
-            local signs = { Error = ' ', Warn = '', Hint = '󰌵 ', Info = ' ' }
-            for type, icon in pairs(signs) do
-                local hl = 'DiagnosticSign' .. type
-                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-            end
+            vim.diagnostic.config({
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = ' ',
+                        [vim.diagnostic.severity.WARN] = ' ',
+                        [vim.diagnostic.severity.INFO] = ' ',
+                        [vim.diagnostic.severity.HINT] = '󰌵 ',
+                    },
+                    linehl = {
+                        [vim.diagnostic.severity.ERROR] = 'Error',
+                        [vim.diagnostic.severity.WARN] = 'Warn',
+                        [vim.diagnostic.severity.INFO] = 'Info',
+                        [vim.diagnostic.severity.HINT] = 'Hint',
+                    },
+                },
+            })
 
             -- keymappings for LSP
             local on_attach = function(client, _)
@@ -76,100 +66,18 @@ return {
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
             -------------------------------------------------------------
-            local lspconfig = require('lspconfig')
-            local util = require('lspconfig.util')
-
-            local rt = require('rust-tools')
-            rt.setup({
-                server = {
-                    on_attach = on_attach,
-                    settings = {
-                        ['rust-analyzer'] = {
-                            cargo = {
-                                allFeatures = true,
-                            },
-                            checkOnSave = {
-                                allFeatures = true,
-                                overrideCommand = {
-                                    'cargo',
-                                    'clippy',
-                                    '--workspace',
-                                    '--message-format=json',
-                                    '--all-targets',
-                                    '--all-features',
-                                    '--',
-                                    '-W',
-                                    'clippy::correctness',
-                                    '-W',
-                                    'clippy::suspicious',
-                                    '-W',
-                                    'clippy::complexity',
-                                    '-W',
-                                    'clippy::perf',
-                                    '-W',
-                                    'clippy::style',
-                                    '-W',
-                                    'clippy::pedantic',
-                                    -- '-W',
-                                    -- 'clippy::restriction',
-                                    -- '-W',
-                                    -- 'clippy::cargo',
-                                },
-                            },
-                        },
-                    },
-                },
-
-                tools = {
-                    inlay_hints = {
-                        parameter_hints_prefix = ':',
-                        other_hints_prefix = ':',
-                    },
-                },
-            })
+            -- local lspconfig = require('lspconfig')
+            -- local lspconfig = vim.lsp.config()
+            -- local util = require('lspconfig.util')
 
             local servers = { 'pyright', 'lua_ls', 'ts_ls', 'texlab' }
 
             for _, lsp in ipairs(servers) do
-                lspconfig[lsp].setup({
+                vim.lsp.config[lsp] = {
                     on_attach = on_attach,
                     capabilities = capabilities,
-                })
+                }
             end
-
-            --
-            -- lspconfig.rust_analyzer.setup({
-            --     on_attach = on_attach,
-            --     root_dir = util.root_pattern('Cargo.toml'),
-            --     settings = {
-            --         ['rust-analyzer'] = {
-            --             cargo = {
-            --                 allFeatures = true,
-            --             }
-            --         }
-            --     },
-            --
-            -- })
         end,
     },
-    -- {
-    --     'jose-elias-alvarez/null-ls.nvim',
-    --     dependencies = 'nvim-lua/plenary.nvim',
-    --     config = function()
-    --         local null_ls = require('null-ls')
-    --
-    --         null_ls.setup({
-    --             sources = {
-    --                 null_ls.builtins.formatting.rustfmt,
-    --                 null_ls.builtins.formatting.autopep8,
-    --                 null_ls.builtins.formatting.black.with({
-    --                     extra_args = { '--line-length=100' },
-    --                 }),
-    --                 null_ls.builtins.formatting.isort,
-    --
-    --                 null_ls.builtins.completion.spell,
-    --             },
-    --         })
-    --     end,
-    -- },
 }
