@@ -2,6 +2,7 @@ return {
     {
         'nvim-mini/mini.clue',
         version = false,
+
         opts = {
             triggers = {
                 { mode = 'n', keys = '<Leader>' }, -- Leader triggers

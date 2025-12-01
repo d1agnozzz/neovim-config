@@ -2,17 +2,8 @@ return {
     {
         'neovim/nvim-lspconfig',
         dependencies = {
-            {
-                'williamboman/mason.nvim',
-                build = ':MasonUpdate',
-                opts = {},
-            },
-            {
-                'williamboman/mason-lspconfig.nvim',
-                opts = { ensure_installed = { 'lua_ls' } },
-            },
-            { 'hrsh7th/cmp-nvim-lsp' },
             { 'folke/neodev.nvim', opts = {} },
+            { 'hrsh7th/cmp-nvim-lsp'},
             { 'mfussenegger/nvim-dap' },
         },
 
@@ -62,21 +53,18 @@ return {
 
             require('neodev').setup({})
 
-            -- Set up lspconfig.
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
-            -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-            -------------------------------------------------------------
-            -- local lspconfig = require('lspconfig')
-            -- local lspconfig = vim.lsp.config()
-            -- local util = require('lspconfig.util')
 
-            local servers = { 'pyright', 'lua_ls', 'ts_ls', 'texlab' }
+            local servers = { 'pyright', 'lua_ls', 'ts_ls', 'texlab', 'rust_analyzer' }
+            -- vim.lsp.enable({"lua_ls"})
+            vim.lsp.inlay_hint.enable(true)
 
             for _, lsp in ipairs(servers) do
                 vim.lsp.config[lsp] = {
                     on_attach = on_attach,
                     capabilities = capabilities,
                 }
+                vim.lsp.enable(lsp)
             end
         end,
     },

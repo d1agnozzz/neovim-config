@@ -18,6 +18,7 @@ return {
                     -- Formatter configurations for filetype "lua" go here
                     -- and will be executed in order
                     lua = filetypes.lua.stylua,
+            
                     rust = {
                         function()
                             return {

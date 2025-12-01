@@ -10,7 +10,7 @@ local colorchemes = {
         end,
     },
     -- { 'morhetz/gruvbox' },
-    {
+{
         'rebelot/kanagawa.nvim',
         opts = {
             colors = {
