@@ -18,11 +18,18 @@ return {
                     -- Formatter configurations for filetype "lua" go here
                     -- and will be executed in order
                     lua = filetypes.lua.stylua,
-            
                     rust = {
                         function()
                             return {
                                 exe = 'rustfmt',
+                                stdin = true,
+                            }
+                        end,
+                    },
+                    go = {
+                        function()
+                            return {
+                                exe = 'gofmt',
                                 stdin = true,
                             }
                         end,

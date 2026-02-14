@@ -3,7 +3,7 @@ return {
         'neovim/nvim-lspconfig',
         dependencies = {
             { 'folke/neodev.nvim', opts = {} },
-            { 'hrsh7th/cmp-nvim-lsp'},
+            { 'hrsh7th/cmp-nvim-lsp' },
             { 'mfussenegger/nvim-dap' },
         },
 
@@ -55,15 +55,30 @@ return {
 
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-            local servers = { 'pyright', 'lua_ls', 'ts_ls', 'texlab', 'rust_analyzer' }
+            local servers = { 'pyright', 'lua_ls', 'rust_analyzer', 'gopls' }
             -- vim.lsp.enable({"lua_ls"})
             vim.lsp.inlay_hint.enable(true)
 
+            local lsp_configs = {
+                rust_analyzer = {
+                    settings = {
+                        ['rust-analyzer'] = {
+                            check = {
+                                command = 'clippy',
+                            },
+                        },
+                    },
+                },
+            }
+
             for _, lsp in ipairs(servers) do
-                vim.lsp.config[lsp] = {
+                local config = {
                     on_attach = on_attach,
                     capabilities = capabilities,
+                    settings = {},
                 }
+                if lsp_configs[lsp] then config.settings = lsp_configs[lsp].settings end
+                vim.lsp.config[lsp] = config
                 vim.lsp.enable(lsp)
             end
         end,
