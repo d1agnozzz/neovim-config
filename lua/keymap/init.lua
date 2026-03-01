@@ -40,7 +40,7 @@ vim.keymap.set('n', '<leader>Q', function()
     end
 end, { desc = 'Close Buffer!' })
 
-vim.keymap.set('n', '<c-s>', ':w<cr>', { desc = 'Save file' })
+vim.keymap.set('n', '<leader>s', ':w<cr>', { desc = 'Save file' })
 vim.keymap.set('n', '<c-Q>', ':qa!<cr>')
 
 -- Switch buffers

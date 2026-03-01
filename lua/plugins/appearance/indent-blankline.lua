@@ -4,12 +4,12 @@ return {
         config = function()
             -- vim.cmd([[highlight IndentBlanklineIndent1 guibg=#2A2A37 gui=nocombine]])
             vim.cmd([[highlight IndentBlanklineIndent2 guibg=#1b1b23 gui=nocombine]])
-            local highlight = {
-                -- 'IndentBlanklineIndent2',
-                'CursorColumn',
-                'Whitespace',
-            }
-            require('ibl').setup()
+            -- local highlight = {
+            --     -- 'IndentBlanklineIndent2',
+            --     'CursorColumn',
+            --     'Whitespace',
+            -- }
+            -- require('ibl').setup()
             -- require('ibl').setup({
             --     indent = { highlight = highlight, char = '' },
             --     whitespace = {

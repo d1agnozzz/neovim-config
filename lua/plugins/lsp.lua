@@ -55,7 +55,7 @@ return {
 
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-            local servers = { 'pyright', 'lua_ls', 'rust_analyzer', 'gopls' }
+            local servers = { 'pylsp', 'lua_ls', 'rust_analyzer', 'gopls' }
             -- vim.lsp.enable({"lua_ls"})
             vim.lsp.inlay_hint.enable(true)
 
