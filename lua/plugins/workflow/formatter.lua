@@ -34,6 +34,14 @@ return {
                             }
                         end,
                     },
+                    json = {
+                        function()
+                            return {
+                                exe = 'jq',
+                                stdin = true,
+                            }
+                        end,
+                    },
                     python = {
                         filetypes.python.black,
                         filetypes.python.autopep8,
