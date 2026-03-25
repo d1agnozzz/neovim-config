@@ -25,7 +25,7 @@ return {
                 end, { expr = true })
 
                 map('n', '<leader>gdf', gs.diffthis)
-                map('n', '<leader>hp', gs.preview_hunk_inline)
+                map('n', '<leader>ghp', gs.preview_hunk_inline)
             end,
         },
     },
