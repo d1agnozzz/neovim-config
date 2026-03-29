@@ -72,7 +72,12 @@ return {
                     require('telescope.builtin').lsp_references,
                     { desc = 'LSP Telescope references' }
                 )
-                vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'LSP Hover' })
+                vim.keymap.set(
+                    'n',
+                    'K',
+                    function() vim.lsp.buf.hover({ border = 'rounded' }) end,
+                    { remap = true, desc = 'LSP Hover' }
+                )
             end
 
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
