@@ -38,4 +38,30 @@ return {
             telescope.load_extension('undo')
         end,
     },
+    {
+        'folke/snacks.nvim',
+        lazy = false,
+        priority = 1000,
+        ---@type snacks.Config
+        opts = {
+            picker = {
+                enabled = true,
+            },
+        },
+        keys = {
+            { '<leader>p', function() Snacks.picker.smart() end, desc = 'Smart find files' },
+            {
+                '<leader>,',
+                function()
+                    Snacks.picker.buffers({
+                        focus = 'list',
+                        layout = {
+                            preset = 'ivy',
+                        },
+                    })
+                end,
+                desc = 'List buffers',
+            },
+        },
+    },
 }
