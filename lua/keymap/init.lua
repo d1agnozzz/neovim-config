@@ -54,3 +54,5 @@ vim.keymap.set(
     ':set hlsearch!<cr>',
     { noremap = true, silent = true, desc = 'Disable search highlight' }
 )
+
+vim.keymap.set('t', '<esc>', '<c-\\><c-n>')

@@ -62,6 +62,11 @@ return {
                 end,
                 desc = 'List buffers',
             },
+            {
+                '<leader>fg',
+                function() Snacks.picker.grep() end,
+                desc = 'Grep picker'
+            },
         },
     },
 }
