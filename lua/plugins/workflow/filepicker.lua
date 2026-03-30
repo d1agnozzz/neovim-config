@@ -46,6 +46,11 @@ return {
         opts = {
             picker = {
                 enabled = true,
+                sources = {
+                    files = {
+                        min_width = 100,
+                    },
+                },
             },
         },
         keys = {
@@ -65,7 +70,7 @@ return {
             {
                 '<leader>fg',
                 function() Snacks.picker.grep() end,
-                desc = 'Grep picker'
+                desc = 'Grep picker',
             },
         },
     },
