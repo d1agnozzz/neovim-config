@@ -8,7 +8,7 @@ vim.keymap.set(
     function() telescope.grep_string({ search = vim.fn.input('Grep > ') }) end,
     { desc = 'Telescope: find word' }
 )
-vim.keymap.set('n', '<leader>fb', telescope.buffers, { desc = 'Telescope: buffers' })
-vim.keymap.set('n', '<leader>fh', telescope.help_tags, { desc = 'Telescope: help tags' })
+-- vim.keymap.set('n', '<leader>fb', telescope.buffers, { desc = 'Telescope: buffers' })
+-- vim.keymap.set('n', '<leader>fh', telescope.help_tags, { desc = 'Telescope: help tags' })
 
-vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<cr>', { desc = 'Telescope: undo tree' })
+-- vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<cr>', { desc = 'Telescope: undo tree' })

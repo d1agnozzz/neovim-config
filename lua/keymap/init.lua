@@ -41,7 +41,6 @@ vim.keymap.set('n', '<leader>Q', function()
 end, { desc = 'Close Buffer!' })
 
 vim.keymap.set('n', '<leader>s', ':w<cr>', { desc = 'Save file' })
-vim.keymap.set('n', '<c-Q>', ':qa!<cr>')
 
 -- Switch buffers
 vim.keymap.set('n', '<leader>h', ':bprevious<cr>', { desc = 'Previous Buffer' })
@@ -55,4 +54,9 @@ vim.keymap.set(
     { noremap = true, silent = true, desc = 'Disable search highlight' }
 )
 
-vim.keymap.set('t', '<esc>', '<c-\\><c-n>')
+vim.keymap.set('t', '<esc>', '<c-\\><c-n>', { desc = 'Escape terminal mode' })
+
+vim.keymap.set('n', '=', [[<cmd>vertical resize +5<cr>]], { desc = 'Extend window vertically' })
+vim.keymap.set('n', '-', [[<cmd>vertical resize -5<cr>]], { desc = 'Shrink windows vertically' })
+vim.keymap.set('n', '+', [[<cmd>horizontal resize +2<cr>]], { desc = 'Extend window horizontally' })
+vim.keymap.set('n', '_', [[<cmd>horizontal resize -2<cr>]], { desc = 'Shrink windows horizontally' }) -- make the window smaller horizontally by pressing shift and -

@@ -72,6 +72,16 @@ return {
                 function() Snacks.picker.grep() end,
                 desc = 'Grep picker',
             },
+            {
+                '<leader>fh',
+                function() Snacks.picker.help() end,
+                desc = 'Help pages picker',
+            },
+            {
+                '<leader>u',
+                function() Snacks.picker.undo() end,
+                desc = 'Undo tree picker',
+            },
         },
     },
 }
