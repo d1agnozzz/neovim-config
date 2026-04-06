@@ -33,5 +33,6 @@ local keymap = {
 require('lazy').setup(plugins)
 require('keymap')
 require('set')
+require('autocmds').setup_workdir_handling()
 vim.g.sonokai_enable_italic = 1
 vim.cmd.colorscheme(Current_colorscheme)

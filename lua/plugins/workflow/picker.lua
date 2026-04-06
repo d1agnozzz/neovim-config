@@ -46,11 +46,6 @@ return {
         opts = {
             picker = {
                 enabled = true,
-                sources = {
-                    files = {
-                        min_width = 100,
-                    },
-                },
             },
         },
         keys = {

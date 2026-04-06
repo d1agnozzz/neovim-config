@@ -60,3 +60,15 @@ vim.keymap.set('n', '=', [[<cmd>vertical resize +5<cr>]], { desc = 'Extend windo
 vim.keymap.set('n', '-', [[<cmd>vertical resize -5<cr>]], { desc = 'Shrink windows vertically' })
 vim.keymap.set('n', '+', [[<cmd>horizontal resize +2<cr>]], { desc = 'Extend window horizontally' })
 vim.keymap.set('n', '_', [[<cmd>horizontal resize -2<cr>]], { desc = 'Shrink windows horizontally' }) -- make the window smaller horizontally by pressing shift and -
+
+-- Copy full or relative path to currently open buffer
+vim.keymap.set('n', '<leader>nf', function()
+    local path = vim.fn.expand('%:p')
+    vim.fn.setreg('+', path)
+    vim.notify('Yanked absolute path: ' .. path, 'info', { title = 'Path' })
+end)
+vim.keymap.set('n', '<leader>nr', function()
+    local path = './' .. vim.fn.expand('%:.')
+    vim.fn.setreg('+', path)
+    vim.notify('Yanked relative path: ' .. path, 'info', { title = 'Path' })
+end)

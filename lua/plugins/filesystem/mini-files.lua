@@ -15,10 +15,21 @@ return {
             end
 
             -- Yank in register full path of entry under cursor
-            local yank_path = function()
-                local path = (MiniFiles.get_fs_entry() or {}).path
-                if path == nil then return vim.notify('Cursor is not on valid entry') end
-                vim.fn.setreg(vim.v.register, path)
+            --- @param abs boolean
+            local yank_path = function(abs)
+                local fs_entry
+                if abs then fs_entry = (MiniFiles.get_fs_entry() or {}) end
+                if not abs then
+                    fs_entry = (MiniFiles.get_fs_entry() or {})
+                    fs_entry.path = './' .. vim.fn.fnamemodify(fs_entry.path, ':.')
+                end
+                if fs_entry == nil then return vim.notify('Cursor is not on valid entry') end
+                vim.fn.setreg('+', fs_entry.path)
+                vim.notify(
+                    'Yanked ' .. (abs and 'absolute' or 'relative') .. ' path: ' .. fs_entry.path,
+                    'info',
+                    { title = 'Path' }
+                )
             end
 
             -- Open path with system default handler (useful for non-text files)
@@ -30,7 +41,8 @@ return {
                     local b = args.data.buf_id
                     vim.keymap.set('n', 'sh', set_cwd, { buffer = b, desc = 'Set cwd' })
                     vim.keymap.set('n', 'gX', ui_open, { buffer = b, desc = 'OS open' })
-                    vim.keymap.set('n', 'gy', yank_path, { buffer = b, desc = 'Yank path' })
+                    vim.keymap.set('n', 'gy', function() yank_path(false) end, { buffer = b, desc = 'Yank path' })
+                    vim.keymap.set('n', 'gY', function() yank_path(true) end, { buffer = b, desc = 'Yank path' })
                 end,
             })
         end,
