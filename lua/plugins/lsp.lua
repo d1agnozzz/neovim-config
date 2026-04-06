@@ -96,6 +96,15 @@ return {
                         },
                     },
                 },
+                gopls = {
+                    settings = {
+                        ['gopls'] = {
+                            buildFlags = {
+                                '-tags=integration,integration_pg,integration_cassandra,integration_keydb,unit,db',
+                            },
+                        },
+                    },
+                },
             }
 
             for _, lsp in ipairs(servers) do

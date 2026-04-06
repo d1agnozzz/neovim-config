@@ -29,7 +29,7 @@ return {
                     go = {
                         function()
                             return {
-                                exe = 'gofmt',
+                                exe = 'goimports',
                                 stdin = true,
                             }
                         end,
