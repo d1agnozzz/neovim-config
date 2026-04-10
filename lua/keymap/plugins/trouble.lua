@@ -8,9 +8,9 @@ vim.keymap.set(
 vim.keymap.set('n', '<leader>tq', '<cmd>Trouble quickfix toggle <cr>', { desc = 'Trouble (quickfix)' })
 vim.keymap.set('n', '<leader>tl', '<cmd>Trouble loclist toggle<cr>', { desc = 'Trouble (loclist)' })
 
-vim.keymap.set('n', 'gR', '<cmd>Trouble lsp_references toggle<cr>', { desc = 'Trouble (LSP references)' })
+vim.keymap.set('n', 'gR', '<cmd>Trouble lsp_references toggle focus=true<cr>', { desc = 'Trouble (LSP references)' })
 vim.keymap.set('n', 'gD', '<cmd>Trouble lsp_definitions toggle<cr>', { desc = 'Trouble (LSP definitions)' })
-vim.keymap.set('n', 'gI', '<cmd>Trouble lsp_implementations toggle<cr>', { desc = 'Trouble (LSP implementations)' })
+vim.keymap.set('n', 'gI', '<cmd>Trouble lsp_implementations toggle focus=true<cr>', { desc = 'Trouble (LSP implementations)' })
 
 vim.keymap.set(
     'n',

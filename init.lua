@@ -1,4 +1,4 @@
-Current_colorscheme = 'tokyonight-night'
+Current_colorscheme = 'kanagawa'
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 
