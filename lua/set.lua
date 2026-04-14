@@ -53,6 +53,8 @@ vim.o.foldtext = ''
 vim.opt.foldcolumn = '0'
 vim.opt.fillchars:append({ fold = ' ' })
 
+vim.o.errorformat = '%f:%l:%c:%m,%f:%l:%m'
+
 -- vim.opt.autochdir = true
 
 -- vim.opt.foldmethod = 'expr'
