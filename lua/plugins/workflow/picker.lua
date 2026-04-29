@@ -1,5 +1,21 @@
 return {
     {
+        'ibhagwan/fzf-lua',
+        -- optional for icon support
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        -- or if using mini.icons/mini.nvim
+        -- dependencies = { "nvim-mini/mini.icons" },
+        ---@module "fzf-lua"
+        ---@type fzf-lua.Config|{}
+        ---@diagnostic disable: missing-fields
+        opts = {},
+        ---@diagnostic enable: missing-fields
+        keys = {
+
+            { '<leader>ff', function() FzfLua.files() end, desc = 'fzf files' },
+        },
+    },
+    {
         'nvim-telescope/telescope.nvim',
         dependencies = {
             'nvim-lua/plenary.nvim',
@@ -46,10 +62,14 @@ return {
         opts = {
             picker = {
                 enabled = true,
+                grep = {
+                    finder = 'rg',
+                },
             },
         },
         keys = {
-            { '<leader>p', function() Snacks.picker.smart() end, desc = 'Smart find files' },
+            { '<leader>pp', function() Snacks.picker.smart() end, desc = 'Smart find files' },
+            { '<leader>ps', function() Snacks.picker() end },
             {
                 '<leader>,',
                 function()
