@@ -14,4 +14,14 @@ function M.setup_workdir_handling()
     })
 end
 
+function M.format_on_save()
+    augroup('FormatOnSave', {
+        clear = true,
+    })
+    autocmd('BufWritePost', {
+        group = 'FormatOnSave',
+        command = 'FormatWrite',
+    })
+end
+
 return M
