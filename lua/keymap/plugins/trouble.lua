@@ -1,16 +1,19 @@
-vim.keymap.set('n', '<leader>tt', '<cmd>Trouble diagnostics toggle focus=false filter.buf=0<cr>', { desc = 'Trouble' })
+vim.keymap.set('n', '<leader>dd', '<cmd>Trouble diagnostics toggle focus=false filter.buf=0<cr>', { desc = 'Trouble' })
 vim.keymap.set(
     'n',
-    '<leader>tw',
-    '<cmd>TroubleToggle diagnostics toggle focus=false<cr>',
+    '<leader>dw',
+    '<cmd>Trouble diagnostics toggle focus=false<cr>',
     { desc = 'Trouble (workspace mode)' }
 )
-vim.keymap.set('n', '<leader>tq', '<cmd>Trouble quickfix toggle <cr>', { desc = 'Trouble (quickfix)' })
-vim.keymap.set('n', '<leader>tl', '<cmd>Trouble loclist toggle<cr>', { desc = 'Trouble (loclist)' })
 
 vim.keymap.set('n', 'gR', '<cmd>Trouble lsp_references toggle focus=true<cr>', { desc = 'Trouble (LSP references)' })
 vim.keymap.set('n', 'gD', '<cmd>Trouble lsp_definitions toggle<cr>', { desc = 'Trouble (LSP definitions)' })
-vim.keymap.set('n', 'gI', '<cmd>Trouble lsp_implementations toggle focus=true<cr>', { desc = 'Trouble (LSP implementations)' })
+vim.keymap.set(
+    'n',
+    'gI',
+    '<cmd>Trouble lsp_implementations toggle focus=true<cr>',
+    { desc = 'Trouble (LSP implementations)' }
+)
 
 vim.keymap.set(
     'n',

@@ -61,6 +61,14 @@ return {
                             }
                         end,
                     },
+                    proto = {
+                        function()
+                            return {
+                                exe = 'clang-format',
+                                stdin = true,
+                            }
+                        end,
+                    },
 
                     -- Use the special "*" filetype for defining formatter configurations on
                     -- any filetype
@@ -70,14 +78,6 @@ return {
                         require('formatter.filetypes.any').remove_trailing_whitespace,
                     },
                 },
-            })
-
-            vim.api.nvim_create_augroup('FormatOnSave', {
-                clear = true,
-            })
-            vim.api.nvim_create_autocmd('BufWritePost', {
-                group = 'FormatOnSave',
-                command = 'FormatWrite',
             })
         end,
     },

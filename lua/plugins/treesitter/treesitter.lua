@@ -8,8 +8,13 @@ return {
         {
             'HiPhish/rainbow-delimiters.nvim',
         },
-        'nvim-treesitter/nvim-treesitter-context',
-        -- 'JoosepAlviste/nvim-ts-context-commentstring',
+        {
+            'nvim-treesitter/nvim-treesitter-context',
+            opts = {
+                max_lines = 5,
+                trim_scope = 'inner',
+            },
+        },
         'windwp/nvim-ts-autotag',
         'RRethy/nvim-treesitter-endwise',
     },

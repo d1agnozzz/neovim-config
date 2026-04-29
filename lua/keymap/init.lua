@@ -61,6 +61,8 @@ vim.keymap.set('n', '-', [[<cmd>vertical resize -5<cr>]], { desc = 'Shrink windo
 vim.keymap.set('n', '+', [[<cmd>horizontal resize +2<cr>]], { desc = 'Extend window horizontally' })
 vim.keymap.set('n', '_', [[<cmd>horizontal resize -2<cr>]], { desc = 'Shrink windows horizontally' }) -- make the window smaller horizontally by pressing shift and -
 
+vim.keymap.set('n', 'gf', 'gF', { desc = 'Always go to specified line in the file' })
+
 -- Copy full or relative path to currently open buffer
 vim.keymap.set('n', '<leader>nf', function()
     local path = vim.fn.expand('%:p')
