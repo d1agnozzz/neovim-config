@@ -82,12 +82,12 @@ return {
 
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-            local servers = { 'pylsp', 'lua_ls', 'rust_analyzer', 'gopls', 'buf_ls' }
+            -- local servers = { 'pylsp', 'lua_ls', 'rust_analyzer', 'gopls', 'buf_ls', 'graphql' }
             -- vim.lsp.enable({"lua_ls"})
             vim.lsp.inlay_hint.enable(true)
 
-            local lsp_configs = {
-                rust_analyzer = {
+            local lsp_configs_overrides = {
+                ['rust_analyzer'] = {
                     settings = {
                         ['rust-analyzer'] = {
                             check = {
@@ -96,7 +96,7 @@ return {
                         },
                     },
                 },
-                gopls = {
+                ['gopls'] = {
                     settings = {
                         ['gopls'] = {
                             buildFlags = {
@@ -105,16 +105,66 @@ return {
                         },
                     },
                 },
+                ['pylsp'] = {},
+                ['lua_ls'] = {
+                    on_init = function(client)
+                        if client.workspace_folders then
+                            local path = client.workspace_folders[1].name
+                            if
+                                path ~= vim.fn.stdpath('config')
+                                and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+                            then
+                                return
+                            end
+                        end
+
+                        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+                            runtime = {
+                                -- Tell the language server which version of Lua you're using (most
+                                -- likely LuaJIT in the case of Neovim)
+                                version = 'LuaJIT',
+                                -- Tell the language server how to find Lua modules same way as Neovim
+                                -- (see `:h lua-module-load`)
+                                path = {
+                                    'lua/?.lua',
+                                    'lua/?/init.lua',
+                                },
+                            },
+                            -- Make the server aware of Neovim runtime files
+                            workspace = {
+                                checkThirdParty = false,
+                                -- library = {
+                                --     vim.env.VIMRUNTIME,
+                                --     -- For LSP Settings Type Annotations: https://github.com/neovim/nvim-lspconfig#lsp-settings-type-annotations
+                                --     vim.api.nvim_get_runtime_file('lua/lspconfig', false)[1],
+                                --     -- Depending on the usage, you might want to add additional paths
+                                --     -- here.
+                                --     -- '${3rd}/luv/library',
+                                --     -- '${3rd}/busted/library',
+                                -- },
+                                -- Or pull in all of 'runtimepath'.
+                                -- NOTE: this is a lot slower and will cause issues when working on
+                                -- your own configuration.
+                                -- See https://github.com/neovim/nvim-lspconfig/issues/3189
+                                library = vim.api.nvim_get_runtime_file('', true),
+                            },
+                        })
+                    end,
+                    settings = {
+                        Lua = {},
+                    },
+                },
+                ['buf_ls'] = {},
+                ['graphql'] = {},
             }
 
-            for _, lsp in ipairs(servers) do
-                local config = {
+            for lsp, conf_override in pairs(lsp_configs_overrides) do
+                local defaults = {
                     on_attach = on_attach,
                     capabilities = capabilities,
-                    settings = {},
                 }
-                if lsp_configs[lsp] then config.settings = lsp_configs[lsp].settings end
-                vim.lsp.config[lsp] = config
+                vim.lsp.config[lsp] = defaults
+                vim.lsp.config(lsp, conf_override)
                 vim.lsp.enable(lsp)
             end
         end,
