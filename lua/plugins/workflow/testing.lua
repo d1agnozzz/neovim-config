@@ -44,5 +44,19 @@ return {
                 },
             })
         end,
+        keys = {
+            { '<leader>tt', function() require('neotest').run.run() end, desc = 'test nearest' },
+            { '<leader>tf', function() require('neotest').run.run(vim.fn.expand('%')) end, desc = 'test file' },
+            {
+                '<leader>to',
+                function() require('neotest').output_panel.toggle({ enter = 1 }) end,
+                desc = 'toggle tests output panel',
+            },
+            {
+                '<leader>ts',
+                function() require('neotest').summary.toggle({ enter = 1 }) end,
+                desc = 'toggle tests summary',
+            },
+        },
     },
 }
