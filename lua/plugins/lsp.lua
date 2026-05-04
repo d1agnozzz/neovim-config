@@ -1,32 +1,42 @@
+function Deep_merge(base, overrides)
+    for key, value in pairs(overrides) do
+        if type(value) == 'table' and type(base[key]) == 'table' then
+            Deep_merge(base[key], value)
+        else
+            base[key] = value
+        end
+    end
+    return base
+end
+
 return {
     {
         'neovim/nvim-lspconfig',
         dependencies = {
-            -- { 'folke/neodev.nvim', opts = {} },
-            {
-                {
-                    'folke/lazydev.nvim',
-                    ft = 'lua', -- only load on lua files
-                    opts = {
-                        library = {
-                            -- See the configuration section for more details
-                            -- Load luvit types when the `vim.uv` word is found
-                            { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-                        },
-                    },
-                },
-                { -- optional cmp completion source for require statements and module annotations
-                    'hrsh7th/nvim-cmp',
-                    opts = function(_, opts)
-                        opts.sources = opts.sources or {}
-                        table.insert(opts.sources, {
-                            name = 'lazydev',
-                            group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-                        })
-                    end,
-                },
-                -- { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
-            },
+            -- {
+            --     {
+            --         'folke/lazydev.nvim',
+            --         ft = 'lua', -- only load on lua files
+            --         opts = {
+            --             library = {
+            --                 -- See the configuration section for more details
+            --                 -- Load luvit types when the `vim.uv` word is found
+            --                 { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+            --             },
+            --         },
+            --     },
+            --     { -- optional cmp completion source for require statements and module annotations
+            --         'hrsh7th/nvim-cmp',
+            --         opts = function(_, opts)
+            --             opts.sources = opts.sources or {}
+            --             table.insert(opts.sources, {
+            --                 name = 'lazydev',
+            --                 group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+            --             })
+            --         end,
+            --     },
+            --     -- { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
+            -- },
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'mfussenegger/nvim-dap' },
         },
@@ -105,7 +115,8 @@ return {
                         },
                     },
                 },
-                ['pylsp'] = {},
+                ['pyright'] = {},
+                -- ['pylsp'] = {},
                 ['lua_ls'] = {
                     on_init = function(client)
                         if client.workspace_folders then

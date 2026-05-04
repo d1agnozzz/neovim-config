@@ -33,6 +33,7 @@ require('set')
 local autocmds = require('autocmds')
 autocmds.setup_workdir_handling()
 autocmds.format_on_save()
+autocmds.neotest_output_goto_file_fix()
 
 vim.g.sonokai_enable_italic = 1
 vim.cmd.colorscheme(Current_colorscheme)
