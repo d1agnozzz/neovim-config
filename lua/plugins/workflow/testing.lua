@@ -42,6 +42,15 @@ return {
                 adapters = {
                     require('neotest-golang')(config),
                 },
+                discovery = {
+                    concurrent = 1,
+                },
+                running = {
+                    concurrent = true,
+                },
+                summary = {
+                    animated = false,
+                },
             })
         end,
         keys = {
