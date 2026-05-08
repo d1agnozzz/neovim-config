@@ -109,6 +109,19 @@ return {
                 ['gopls'] = {
                     settings = {
                         ['gopls'] = {
+                            analyses = {
+                                shadow = true,
+                            },
+                            hints = {
+                                assignVariableTypes = true,
+                                compositeLiteralFields = true,
+                                compositeLiteralTypes = true,
+                                constantValues = true,
+                                functionTypeParameters = true,
+                                parameterNames = true,
+                                rangeVariableTypes = true,
+                            },
+                            gofumpt = true,
                             buildFlags = {
                                 '-tags=integration,integration_pg,integration_cassandra,integration_keydb,unit,db',
                             },

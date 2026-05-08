@@ -9,18 +9,34 @@ function M.setup_workdir_handling()
         group = 'DirectoryHandling',
         callback = function()
             local args = vim.fn.argv()
-            if #args == 1 and vim.fn.isdirectory(args[1]) == 1 then vim.cmd('cd ' .. args[1]) end
+            if #args == 1 and vim.fn.isdirectory(args[1]) == 1 then
+                vim.cmd('cd ' .. args[1])
+            end
         end,
     })
 end
-
 function M.format_on_save()
     augroup('FormatOnSave', {
         clear = true,
     })
     autocmd('BufWritePost', {
         group = 'FormatOnSave',
-        command = 'FormatWrite',
+        callback = function()
+            local ft = vim.bo.filetype
+            -- Skip Go files
+            if ft == 'go' then
+                return
+            end
+
+            vim.cmd('FormatWrite')
+        end,
+    })
+    autocmd('BufWritePre', {
+        group = 'FormatOnSave',
+        pattern = '*.go',
+        callback = function()
+            vim.lsp.buf.format()
+        end,
     })
 end
 
